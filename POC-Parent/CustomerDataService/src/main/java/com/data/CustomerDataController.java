@@ -1,9 +1,6 @@
 package com.data;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.ArrayList;
@@ -17,8 +14,9 @@ public class CustomerDataController {
      * @param customerId
      * @return Customer
      */
-    @RequestMapping( method = RequestMethod.GET)
-    public Customer getCustomer(@RequestParam(value="{customerId}", defaultValue="1") String customerId) {
+    @RequestMapping( path = "/{customerId}",
+                     method = RequestMethod.GET)
+    public Customer getCustomer(@PathVariable ("customerId") String customerId) {
         Customer customer = findCustomer(customerId);
         return customer;
     }
